@@ -17,8 +17,8 @@ export function Header() {
         <div className="mx-auto flex max-w-7xl justify-between px-6 py-2 text-xs tracking-wide">
           <span>Trusted Sourcing. Lasting Partnerships.</span>
           <div className="flex gap-6">
-            <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-gold" /> +1 (000) 000-0000</span>
-            <span className="flex items-center gap-2"><Mail className="h-3 w-3 text-gold" /> info@primesourceintl.com</span>
+            <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-gold" /> +92 (0332) 537-5210</span>
+            <span className="flex items-center gap-2"><Mail className="h-3 w-3 text-gold" /> atifmalik526@gmail.com</span>
           </div>
         </div>
       </div>
