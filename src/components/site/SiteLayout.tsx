@@ -63,14 +63,22 @@ export function Footer() {
         <div>
           <h4 className="mb-4 text-xs font-bold uppercase tracking-widest text-gold">Contact</h4>
           <ul className="space-y-3 text-sm opacity-80">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 text-gold" /> Your business address here</li>
+            <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 text-gold" /> Street No 688, House No 21, G-13/3, Islamabad</li>
             <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 text-gold" /> +92 (0332) 537-5210</li>
             <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 text-gold" /> atifmalik526@gmail.com</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-navy-foreground/10 py-6 text-center text-xs opacity-60">
-        © {new Date().getFullYear()} Prime Source International. All rights reserved.
+        © {new Date().getFullYear()} Prime Source International. All rights reserved. Developed by{" "}
+        <a
+          href="https://www.devoptex.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold underline underline-offset-4 hover:text-gold"
+        >
+         Devoptex
+        </a>
       </div>
     </footer>
   );
