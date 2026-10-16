@@ -1,12 +1,6 @@
 import "dotenv/config";
-import express from "express";
 import nodemailer from "nodemailer";
 import { z } from "zod";
-
-const app = express();
-
-app.disable("x-powered-by");
-app.use(express.json({ limit: "16kb" }));
 
 const schema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -22,71 +16,119 @@ const schema = z.object({
   message: z.string().trim().min(1).max(1000),
 });
 
-if (!process.env.SMTP_USER || !process.env.SMTP_PASSWORD) {
-  throw new Error("Missing SMTP_USER or SMTP_PASSWORD.");
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+    },
+  });
 }
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.hostinger.com",
-  port: Number(process.env.SMTP_PORT || 465),
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASSWORD,
-  },
-});
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
 
-app.post("/api/contact", async (req, res) => {
-  const result = schema.safeParse(req.body);
-
-  if (!result.success) {
-    return res.status(400).json({
-      success: false,
-      error: "Please check your form fields.",
-    });
-  }
-
-  const { name, email, phone, service, message } = result.data;
-
-  try {
-    const info = await transporter.sendMail({
-      from: {
-        name: "Prime Source International",
-        address: process.env.SMTP_USER,
-      },
-      to: "contact@primesourceint.com",
-      replyTo: email,
-      subject: `Website inquiry — ${service}`,
-      text: [
-        "New website inquiry",
-        "",
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone || "Not provided"}`,
-        `Service: ${service}`,
-        "",
-        "Message:",
-        message,
-      ].join("\n"),
-    });
-
-    if (!info.accepted?.length) {
-      throw new Error("Email was not accepted by the mail server.");
+    // Let Nitro render the rest of your website.
+    if (url.pathname !== "/api/contact") {
+      return;
     }
 
-    return res.status(200).json({ success: true });
-  } catch (error) {
-    console.error("Contact email failed:", error);
+    if (request.method !== "POST") {
+      return new Response("Method not allowed", {
+        status: 405,
+        headers: { Allow: "POST" },
+      });
+    }
 
-    return res.status(500).json({
-      success: false,
-      error: "Unable to send your message. Please try again.",
+    let data;
+
+    try {
+      data = await request.json();
+    } catch {
+      return json(
+        { success: false, error: "Invalid request." },
+        400
+      );
+    }
+
+    const result = schema.safeParse(data);
+
+    if (!result.success) {
+      return json(
+        {
+          success: false,
+          error: "Please check your form fields.",
+        },
+        400
+      );
+    }
+
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPassword = process.env.SMTP_PASSWORD;
+
+    if (!smtpUser || !smtpPassword) {
+      console.error("Missing SMTP_USER or SMTP_PASSWORD.");
+
+      return json(
+        {
+          success: false,
+          error: "Email service is not configured.",
+        },
+        500
+      );
+    }
+
+    const { name, email, phone, service, message } = result.data;
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || "smtp.hostinger.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: smtpUser,
+        pass: smtpPassword,
+      },
     });
-  }
-});
 
-const port = Number(process.env.PORT || 3001);
+    try {
+      const info = await transporter.sendMail({
+        from: {
+          name: "Prime Source International",
+          address: smtpUser,
+        },
+        to: "contact@primesourceint.com",
+        replyTo: email,
+        subject: `Website inquiry — ${service}`,
+        text: [
+          "New inquiry from your website",
+          "",
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Phone: ${phone || "Not provided"}`,
+          `Service: ${service}`,
+          "",
+          "Message:",
+          message,
+        ].join("\n"),
+      });
 
-app.listen(port, () => {
-  console.log(`Contact API listening on port ${port}`);
-});
+      if (!info.accepted?.length) {
+        throw new Error("Email was not accepted.");
+      }
+
+      return json({ success: true });
+    } catch (error) {
+      console.error("Contact email failed:", error);
+
+      return json(
+        {
+          success: false,
+          error: "Unable to send your message. Please try again.",
+        },
+        500
+      );
+    }
+  },
+};
