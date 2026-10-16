@@ -64,8 +64,8 @@ export function Footer() {
           <h4 className="mb-4 text-xs font-bold uppercase tracking-widest text-gold">Contact</h4>
           <ul className="space-y-3 text-sm opacity-80">
             <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 text-gold" /> Your business address here</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 text-gold" /> +1 (000) 000-0000</li>
-            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 text-gold" /> info@primesourceintl.com</li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 text-gold" /> +92 (0332) 537-5210</li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 text-gold" /> atifmalik526@gmail.com</li>
           </ul>
         </div>
       </div>
