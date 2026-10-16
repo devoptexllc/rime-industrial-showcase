@@ -98,7 +98,7 @@ export default {
           name: "Prime Source International",
           address: smtpUser,
         },
-        to: "contact@primesourceint.com",
+        to: "atifmalik526@gmail.com",
         replyTo: email,
         subject: `Website inquiry — ${service}`,
         text: [
