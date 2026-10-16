@@ -23,7 +23,7 @@ export function Header() {
         </div>
       </div>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <Link to="/"><img src={logo.url} alt="Prime Source International" className="h-14 w-auto" /></Link>
+        <Link to="/"><img src="/logo.png" alt="Prime Source International" className="h-14 w-auto" /></Link>
         <nav className="hidden items-center gap-10 md:flex">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} activeOptions={{ exact: true }}
