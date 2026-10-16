@@ -82,12 +82,12 @@ const contactDetails = [
   {
     icon: MapPin,
     label: "Address",
-    value: "Your business address here",
+    value: "Street No 688, House No 21, G-13/3, Islamabad",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+92 (0332) 5375210-0000",
+    value: "+92 (0332) 5375210",
   },
   {
     icon: Mail,
