@@ -7,12 +7,25 @@ const schema = z.object({
   email: z.string().trim().email().max(255),
   phone: z.string().trim().max(30).optional(),
   service: z.enum([
-    "CNC Tools",
-    "Surveillance Cameras",
+    "Mechanical Parts",
+    "Mechanical Components",
     "Machinery Parts",
+    "Electrical Components",
+    "Electronic Parts",
+    "Industrial / Aerospace Materials",
+    "Industrial Chemicals",
+    "Industrial Panel PCs",
+    "Single-Board Computers (SBCs)",
+    "Rugged Laptops",
     "Computer Accessories",
-    "Other",
-  ]),
+    "IT Specialist Services",
+    "BOM Management",
+    "Turnkey PCB Manufacturing & Assembly",
+    "Environmental Testing",
+    "Surveillance Cameras",
+    "Global Sourcing & Procurement",
+    "Other"
+]),
   message: z.string().trim().min(1).max(1000),
 });
 
@@ -98,7 +111,7 @@ export default {
           name: "Prime Source International",
           address: smtpUser,
         },
-        to: "atifmalik526@gmail.com",
+        to: "contact@primesourceint.com",
         replyTo: email,
         subject: `Website inquiry — ${service}`,
         text: [

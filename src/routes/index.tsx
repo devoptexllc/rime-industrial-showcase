@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Cog, Cctv, Wrench, Monitor, Truck, ShieldCheck, Headphones, Globe } from "lucide-react";
+import { ChevronLeft, ChevronRight, Wrench, Plug, CircuitBoard, Layers, FlaskConical, Monitor, Cpu, Thermometer, FileText, Download } from "lucide-react";
+import { majorServices } from "@/data/services";
 import { Shell } from "@/components/site/SiteLayout";
-import cnc from "@/assets/slide-cnc.jpg";
+import { WhyPsiTimeline } from "@/components/site/WhyPsiTimeline";
 import cctv from "@/assets/slide-cctv.jpg";
 import parts from "@/assets/slide-parts.jpg";
 import it from "@/assets/slide-it.jpg";
@@ -11,33 +12,24 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Prime Source International — Industrial Equipment Supplier" },
-      { name: "description", content: "Supplier of CNC tools, surveillance cameras, machinery parts and computer accessories. Trusted sourcing, lasting partnerships." },
+      { name: "description", content: "Sourcing and indenting for electronic parts, electrical and mechanical components, industrial equipment and computer accessories." },
       { property: "og:title", content: "Prime Source International — Industrial Equipment Supplier" },
-      { property: "og:description", content: "CNC tools, CCTV cameras, machinery parts and computer accessories from one trusted source." },
+      { property: "og:description", content: "Industrial, electronic, electrical, mechanical and IT supplies with requirement-specific sourcing support." },
     ],
   }),
   component: Index,
 });
 
 const slides = [
-  { img: it, kicker: "Computer Accessories", title: "Technology That Powers Business", text: "Networking gear, servers, peripherals and IT hardware for offices and industrial sites." },
-  { img: cnc, kicker: "CNC Tools & Machining", title: "Precision Tools for Peak Performance", text: "End mills, inserts, holders and complete CNC tooling solutions sourced from world-class manufacturers." },
+  { img: it, kicker: "Computer Accessories", title: "Technology That Powers Business", text: "Computer accessories, networking hardware, servers and industrial IT equipment for business and technical environments." },
+  { img: "/images/industry-workshop.jpg", kicker: "Industrial / Aerospace Materials", title: "Materials for Demanding Applications", text: "Specification-based sourcing for industrial and aerospace materials, electrical components and mechanical requirements." },
   { img: cctv, kicker: "Surveillance Cameras", title: "Security That Never Sleeps", text: "IP, dome, bullet and PTZ camera systems with NVRs and accessories to protect your facilities." },
   { img: parts, kicker: "Machinery Parts", title: "Keep Your Production Moving", text: "Gears, bearings, shafts, motors and spare parts for industrial machinery — supplied fast." },
   
 ];
 
-const services = [
-  { icon: Globe, title: "Global Sourcing", text: "We source hard-to-find industrial items from trusted international manufacturers at competitive prices." },
-  { icon: Truck, title: "Logistics & Delivery", text: "Reliable shipping and timely delivery so your operations face minimum downtime." },
-  { icon: Cog, title: "CNC Tools Supply", text: "Cutting tools, end mills, drills, inserts, tool holders, collets and CNC machine accessories for every machining need." },
-  { icon: Cctv, title: "Surveillance Cameras", text: "Complete CCTV and IP camera solutions — cameras, DVR/NVR systems, cabling and installation support." },
-  { icon: Wrench, title: "Machinery Parts", text: "Genuine and compatible spare parts: bearings, gears, belts, pumps, motors, hydraulic and pneumatic components." },
-  { icon: Monitor, title: "Computer Accessories", text: "Keyboards, mice, monitors, storage, networking switches, routers, cables and server hardware." },
-  
-  { icon: ShieldCheck, title: "Quality Assurance", text: "Every product is checked for authenticity and quality before it reaches your facility." },
-  { icon: Headphones, title: "Technical Support", text: "Expert guidance in selecting the right equipment, plus responsive after-sales support." },
-];
+const serviceIcons = [Wrench, Plug, CircuitBoard, Layers, FlaskConical, Monitor, Cpu, Thermometer];
+const services = majorServices.map((service, index) => ({ ...service, icon: serviceIcons[index] ?? Wrench }));
 
 function Slider() {
   const [i, setI] = useState(0);
@@ -82,7 +74,7 @@ function Index() {
       <Slider />
       <section className="border-b border-border bg-card">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-12 md:grid-cols-4">
-          {[["4", "Core Product Lines"], ["1000+", "Products Available"], ["24/7", "Customer Support"], ["100%", "Quality Checked"]].map(([n, l]) => (
+          {[["8", "Major Services"], ["Global", "Supplier Coordination"], ["Technical", "Sourcing Support"], ["Dedicated", "Order Follow-up"]].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="font-display text-5xl text-primary">{n}</div>
               <div className="mt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">{l}</div>
@@ -104,6 +96,29 @@ function Index() {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground group-hover:text-primary-foreground/75">{text}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link to="/services" className="inline-block bg-primary px-8 py-4 text-xs font-bold uppercase tracking-widest text-primary-foreground transition hover:bg-accent hover:text-accent-foreground">View All Services</Link>
+        </div>
+      </section>
+      <WhyPsiTimeline />
+      <section aria-labelledby="company-profile-heading" className="border-t border-border bg-card">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-10 px-6 py-16 md:flex-row md:items-center md:py-20">
+          <div className="flex max-w-3xl flex-col gap-6 sm:flex-row">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center bg-primary">
+              <FileText aria-hidden="true" className="h-8 w-8 text-gold" strokeWidth={1.5} />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">Get to Know PSI</p>
+              <h2 id="company-profile-heading" className="mt-3 font-display text-4xl text-primary md:text-5xl">Download Our Company Profile</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">Explore our company background, supply capabilities, technical expertise and approach to industrial procurement in one document.</p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">PDF Document</p>
+            </div>
+          </div>
+          <a href="/PSI%20Company%20Profile.pdf" download="PSI-Company-Profile.pdf" className="inline-flex shrink-0 items-center gap-3 bg-primary px-7 py-4 text-xs font-bold uppercase tracking-widest text-primary-foreground transition hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">
+            <Download aria-hidden="true" className="h-4 w-4" />
+            Download Company Profile
+          </a>
         </div>
       </section>
       <section className="bg-navy text-navy-foreground">

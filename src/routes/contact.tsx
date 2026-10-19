@@ -1,3 +1,4 @@
+import { serviceOptions } from "@/data/services";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Prime Source International for quotes on CNC tools, surveillance cameras, machinery parts and computer accessories.",
+          "Contact Prime Source International for industrial supplies, electronic parts, electrical and mechanical components, computer accessories and industrial IT equipment.",
       },
       {
         property: "og:title",
@@ -36,13 +37,7 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const services = [
-  "CNC Tools",
-  "Surveillance Cameras",
-  "Machinery Parts",
-  "Computer Accessories",
-  "Other",
-] as const;
+const services = serviceOptions;
 
 const schema = z.object({
   name: z

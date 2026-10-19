@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Prime Source International" },
-      { name: "description", content: "Industrial equipment supplier: CNC tools, surveillance cameras, machinery parts and computer accessories." },
+      { name: "description", content: "Mechanical, electrical and electronic supplies, industrial and aerospace materials, chemicals, industrial computing and specialist technical services." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

@@ -1,0 +1,70 @@
+.psi-timeline {
+  --psi-progress: 1;
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  max-width: 68rem;
+}
+.psi-timeline::before,
+.psi-timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1.375rem;
+  width: 2px;
+  background: var(--color-border);
+}
+.psi-timeline::after {
+  background: var(--color-gold);
+  transform: scaleY(var(--psi-progress));
+  transform-origin: top;
+}
+.psi-timeline-step {
+  position: relative;
+  padding: 0 0 2.5rem 4rem;
+}
+.psi-timeline-step:last-child { padding-bottom: 0; }
+.psi-timeline-marker {
+  position: absolute;
+  z-index: 1;
+  top: 1.5rem;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.875rem;
+  height: 2.875rem;
+  border: 2px solid var(--color-gold);
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  font-size: .75rem;
+  font-weight: 700;
+  transition: background .5s ease, color .5s ease, box-shadow .5s ease;
+}
+.psi-timeline-card {
+  position: relative;
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.psi-timeline-animated .psi-timeline-card { opacity: 0; transform: translateY(32px); }
+.psi-timeline-animated .psi-step-visible .psi-timeline-card { opacity: 1; transform: translate(0, 0); }
+.psi-step-visible .psi-timeline-marker {
+  background: var(--color-gold);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-gold) 15%, transparent);
+}
+@media (min-width: 768px) {
+  .psi-timeline::before, .psi-timeline::after { left: calc(50% - 1px); }
+  .psi-timeline-step { display: grid; grid-template-columns: 1fr 1fr; padding: 0 0 3.5rem; column-gap: 6rem; }
+  .psi-timeline-marker { left: calc(50% - 1.4375rem); top: 2rem; }
+  .psi-timeline-step:nth-child(odd) .psi-timeline-card { grid-column: 1; }
+  .psi-timeline-step:nth-child(even) .psi-timeline-card { grid-column: 2; }
+  .psi-timeline-animated .psi-timeline-step:nth-child(odd):not(.psi-step-visible) .psi-timeline-card { transform: translate(-32px, 24px); }
+  .psi-timeline-animated .psi-timeline-step:nth-child(even):not(.psi-step-visible) .psi-timeline-card { transform: translate(32px, 24px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .psi-timeline-card, .psi-timeline-marker { transition: none; }
+  .psi-timeline-animated .psi-timeline-card { opacity: 1; transform: none !important; }
+  .psi-timeline::after { transform: none; }
+}

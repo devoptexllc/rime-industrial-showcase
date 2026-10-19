@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Menu, X, Phone, Mail, MapPin } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
 
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About Us" },
+  { to: "/services", label: "Services" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
 
@@ -52,7 +52,7 @@ export function Footer() {
         <div className="md:col-span-2">
           <h3 className="font-display text-3xl">Prime Source International</h3>
           <div className="gold-rule my-4" />
-          <p className="max-w-md text-sm opacity-75">Your trusted industrial equipment supplier for CNC tools, surveillance cameras, machinery parts and computer accessories — delivered with reliability and care.</p>
+          <p className="max-w-md text-sm opacity-75">Your sourcing and indenting partner for industrial equipment, electronic parts, electrical and mechanical components, computer accessories and industrial IT equipment.</p>
         </div>
         <div>
           <h4 className="mb-4 text-xs font-bold uppercase tracking-widest text-gold">Quick Links</h4>
