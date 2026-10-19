@@ -20,19 +20,21 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
+  { img: it, kicker: "Computer Accessories", title: "Technology That Powers Business", text: "Networking gear, servers, peripherals and IT hardware for offices and industrial sites." },
   { img: cnc, kicker: "CNC Tools & Machining", title: "Precision Tools for Peak Performance", text: "End mills, inserts, holders and complete CNC tooling solutions sourced from world-class manufacturers." },
   { img: cctv, kicker: "Surveillance Cameras", title: "Security That Never Sleeps", text: "IP, dome, bullet and PTZ camera systems with NVRs and accessories to protect your facilities." },
   { img: parts, kicker: "Machinery Parts", title: "Keep Your Production Moving", text: "Gears, bearings, shafts, motors and spare parts for industrial machinery — supplied fast." },
-  { img: it, kicker: "Computer Accessories", title: "Technology That Powers Business", text: "Networking gear, servers, peripherals and IT hardware for offices and industrial sites." },
+  
 ];
 
 const services = [
+  { icon: Globe, title: "Global Sourcing", text: "We source hard-to-find industrial items from trusted international manufacturers at competitive prices." },
+  { icon: Truck, title: "Logistics & Delivery", text: "Reliable shipping and timely delivery so your operations face minimum downtime." },
   { icon: Cog, title: "CNC Tools Supply", text: "Cutting tools, end mills, drills, inserts, tool holders, collets and CNC machine accessories for every machining need." },
   { icon: Cctv, title: "Surveillance Cameras", text: "Complete CCTV and IP camera solutions — cameras, DVR/NVR systems, cabling and installation support." },
   { icon: Wrench, title: "Machinery Parts", text: "Genuine and compatible spare parts: bearings, gears, belts, pumps, motors, hydraulic and pneumatic components." },
   { icon: Monitor, title: "Computer Accessories", text: "Keyboards, mice, monitors, storage, networking switches, routers, cables and server hardware." },
-  { icon: Globe, title: "Global Sourcing", text: "We source hard-to-find industrial items from trusted international manufacturers at competitive prices." },
-  { icon: Truck, title: "Logistics & Delivery", text: "Reliable shipping and timely delivery so your operations face minimum downtime." },
+  
   { icon: ShieldCheck, title: "Quality Assurance", text: "Every product is checked for authenticity and quality before it reaches your facility." },
   { icon: Headphones, title: "Technical Support", text: "Expert guidance in selecting the right equipment, plus responsive after-sales support." },
 ];

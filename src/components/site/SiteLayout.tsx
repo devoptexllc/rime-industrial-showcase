@@ -18,7 +18,7 @@ export function Header() {
           <span>Trusted Sourcing. Lasting Partnerships.</span>
           <div className="flex gap-6">
             <span className="flex items-center gap-2"><Phone className="h-3 w-3 text-gold" /> +92 (0332) 537-5210</span>
-            <span className="flex items-center gap-2"><Mail className="h-3 w-3 text-gold" /> atifmalik526@gmail.com</span>
+            <span className="flex items-center gap-2"><Mail className="h-3 w-3 text-gold" /> contact@primesourceint.com</span>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ export function Footer() {
           <ul className="space-y-3 text-sm opacity-80">
             <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 text-gold" /> Street No 688, House No 21, G-13/3, Islamabad</li>
             <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 text-gold" /> +92 (0332) 537-5210</li>
-            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 text-gold" /> atifmalik526@gmail.com</li>
+            <li className="flex gap-2"><Mail className="h-4 w-4 shrink-0 text-gold" /> contact@primesourceint.com</li>
           </ul>
         </div>
       </div>
